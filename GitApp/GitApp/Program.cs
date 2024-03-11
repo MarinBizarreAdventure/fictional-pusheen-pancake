@@ -13,7 +13,7 @@ namespace GitApp
             Console.WriteLine("Hello, World!");
             DrawPyramid(5);
         }
-
+        //uuuu
         static void DrawPyramid(int height)
         {
             for (int i = 0; i < height; i++)
