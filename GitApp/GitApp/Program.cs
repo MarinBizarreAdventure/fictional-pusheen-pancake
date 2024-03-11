@@ -23,7 +23,7 @@ namespace GitApp
                     Console.Write(" ");
                 }
 
-                // Draw asterisks
+                // Draw asterisks popo
                 for (int j = 0; j < 2 * i + 1; j++)
                 {
                     Console.Write("*");
