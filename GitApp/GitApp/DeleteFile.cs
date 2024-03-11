@@ -8,5 +8,6 @@ namespace GitApp
 {
     internal class DeleteFile
     {
+        public DeleteFile() { }
     }
 }
