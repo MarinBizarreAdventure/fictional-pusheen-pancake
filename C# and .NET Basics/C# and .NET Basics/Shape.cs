@@ -14,7 +14,7 @@ namespace C__and.NET_Basics
         
         public Shape(string name)
         {
-            name = name;
+            this.name = name;
         }
 
         public abstract void Draw();
@@ -65,9 +65,13 @@ namespace C__and.NET_Basics
             Console.WriteLine($"Drawing rectangle {Name} with sides {Side1} and {Side2}");
         }
 
-        public override double CalculateArea()
+        public override double CalculateArea(){
+            return Side2 * Side1 ;
+        }
+
+        public double CalculateArea(double scaleFactor = 1.0)
         {
-            return Side2 * Side1;
+            return Side2 * Side1 * scaleFactor;
         }
 
     }   
