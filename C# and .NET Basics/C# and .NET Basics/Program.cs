@@ -19,6 +19,9 @@ namespace C__and.NET_Basics
             shapesList.Add(new Circle("Circle2", 4));
             shapesList.Add(new Rectangle(name:"Rectangle3", side:4));
 
+           
+
+
             foreach (var shape in shapesList)
             {
                 shape.Draw();

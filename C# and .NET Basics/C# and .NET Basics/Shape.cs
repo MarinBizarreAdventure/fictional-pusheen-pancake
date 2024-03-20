@@ -49,7 +49,7 @@ namespace C__and.NET_Basics
         private double side1;
         private double side2;
 
-        public double Side1 { get { return side1; } set { side1 = value; } }
+        public double Side1 { get; set; }
         public double Side2 { get { return side2; } set { side2 = value; } }
 
         public Rectangle(double side1, double side2, string name) : base(name)
@@ -57,7 +57,10 @@ namespace C__and.NET_Basics
            Side1 = side1; 
            Side2 = side2;
         }
-
+        public Rectangle():base("rectangle")
+        {
+            
+        }
         public Rectangle(double side, string name): this(side, side, name) { }
 
         public override void Draw()
