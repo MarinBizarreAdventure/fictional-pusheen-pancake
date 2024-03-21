@@ -105,7 +105,6 @@ namespace StringAssignment
         public StringBuilder ReplaceSubsting(string oldString, string newString)
         {
             return _originalText.Replace(oldString, newString);
-
         }
     }
 }
