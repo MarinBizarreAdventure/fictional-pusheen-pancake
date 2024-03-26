@@ -11,15 +11,39 @@ namespace IRepository
         static void Main(string[] args)
         {
 
-            
-            var dealershipRepository = new DealershipRepository();
 
+            #if DEBUG
+                Console.WriteLine("Debug mode is enabled.");
+            #else
+                Console.WriteLine("Debug mode is disabled.");
+            #endif
+
+            var dealershipRepository = new DealearshipRepository();
             // Create and add dealerships
             var dealership1 = new Dealership { Name = "Best Cars", Location = "New York" };
             var dealership2 = new Dealership { Name = "Dream Motors", Location = "Los Angeles" };
 
-            dealershipRepository.Add(dealership1);
-            dealershipRepository.Add(dealership2);
+            try
+            {
+                dealershipRepository.Add(dealership1);
+                dealershipRepository.Add(dealership2);
+            }
+            catch (InvalidInputException ex)
+            {
+                Console.WriteLine($"Error: {ex.Message} DealearshipId: {ex.Id}");
+            }
+            catch (Exception ex)
+            {
+                Console.WriteLine($"An error occurred: {ex.Message}");
+                throw;
+            }
+            finally
+            {
+                Console.WriteLine("Cleanup code executed.");
+            }
+            
+
+            
 
             // Create brands and car models
             var brandRepository = new BrandRepository();
@@ -31,6 +55,14 @@ namespace IRepository
             var modelCorolla = new CarModel { Name = "Corolla" };
             var modelCivic = new CarModel { Name = "Civic" };
             var modelAccord = new CarModel { Name = "Accord" };
+            try
+            {
+                brandRepository.Delete(100); // Assuming brand with ID 100 doesn't exist
+            }
+            catch (ArgumentException ex)
+            {
+                Console.WriteLine($"Error deleting brand main: {ex.Message}");
+            }
 
             // Add car models to brands
             brandToyota.Models.Add(modelCamry);

@@ -4,6 +4,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using System.Xml;
+using System.Xml.Linq;
 
 namespace IRepository
 {
@@ -23,7 +24,12 @@ namespace IRepository
 
         public Brand GetById(int id)
         {
-            return _brands.FirstOrDefault(b => b.Id == id);
+            Brand brand = _brands.FirstOrDefault(b => b.Id == id);
+            if (brand == null)
+            {
+                throw new ArgumentException($"Brand with ID {id} not found", nameof(id));
+            }
+            return brand;
         }
 
         public IList<Brand> GetAll()
@@ -51,10 +57,15 @@ namespace IRepository
 
         public void Delete(int id)
         {
-            Brand brandToRemove = GetById(id);
-            if (brandToRemove != null)
+            try
             {
+                Brand brandToRemove = GetById(id);
                 _brands.Remove(brandToRemove);
+            }
+            catch (ArgumentException ex)
+            {
+                Console.WriteLine($"Error deleting brand repo: {ex.Message}");
+                throw;
             }
         }
     }
@@ -104,7 +115,7 @@ namespace IRepository
 
     }
 
-    public class DealershipRepository : IRepository<Dealership>
+    public class DealearshipRepository : IRepository<Dealership>
     {
         private List<Dealership> _dealerships = new List<Dealership>();
         private int _nextId = 1;
@@ -122,6 +133,15 @@ namespace IRepository
         public Dealership Add(Dealership dealership)
         {
             dealership.Id = _nextId++;
+            if (string.IsNullOrWhiteSpace(dealership.Name))
+            {
+                throw new InvalidInputException(dealership.Id, "Dealership name cannot be empty or whitespace");
+            }
+
+            if (string.IsNullOrWhiteSpace(dealership.Location))
+            {
+                throw new InvalidInputException(dealership.Id, "Dealership location cannot be empty or whitespace");
+            }
             _dealerships.Add(dealership);
             return dealership;
         }
@@ -148,6 +168,17 @@ namespace IRepository
             }
         }
     }
+    
 
-   
+    public class InvalidInputException : Exception
+    {
+        public int Id {  get;}
+        public InvalidInputException(int id, string message) : base(message)
+        {
+            Id = id;
+
+        }
+    }
+
+
 }
