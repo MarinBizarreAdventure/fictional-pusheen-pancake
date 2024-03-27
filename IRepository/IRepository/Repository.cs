@@ -117,6 +117,7 @@ namespace IRepository
 
     public class DealearshipRepository : IRepository<Dealership>
     {
+        public delegate IEnumerable<T> GetItemsDealership<T>(Dealership dealership);
         private List<Dealership> _dealerships = new List<Dealership>();
         private int _nextId = 1;
 
@@ -165,6 +166,14 @@ namespace IRepository
             if(dealearshipToRemove != null)
             {
                 _dealerships.Remove(dealearshipToRemove);
+            }
+        }
+
+        public void FindItem<T>(Func<Dealership, bool> itemDelegate, T item) where T : Entity
+        {
+            foreach (var dealership in _dealerships)
+            {
+                if (itemDelegate(dealership)) Console.WriteLine($"{item.GetType()} '{item.Name}' exists in dealership '{dealership.Name}'.");
             }
         }
     }
