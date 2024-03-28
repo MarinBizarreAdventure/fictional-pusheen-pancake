@@ -8,15 +8,7 @@ using System.Xml.Linq;
 
 namespace IRepository
 {
-    public interface IRepository<T> where T:Entity
-    {
-        T GetById(int id);
-        IList<T> GetAll();
-        T Add(T entity);
-        void Update(T entity);
-        void Delete(int id);
-    }
-
+   
     public class BrandRepository : IRepository<Brand>
     {
         private List<Brand> _brands = new List<Brand>();

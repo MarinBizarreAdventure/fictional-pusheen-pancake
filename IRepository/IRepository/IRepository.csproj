@@ -43,6 +43,10 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="EntityRepository.cs" />
+    <Compile Include="FelixRepository.cs" />
+    <Compile Include="IFelixRepository.cs" />
+    <Compile Include="IRepository.cs" />
     <Compile Include="Models.cs" />
     <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
