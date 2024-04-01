@@ -8,18 +8,18 @@ public class Program
     {
         List<Student> students = new List<Student>
         {
-            new Student { Id = 1, Name = "Alice", CourseId = 101 },
-            new Student { Id = 2, Name = "Bob", CourseId = 102 },
-            new Student { Id = 3, Name = "Charlie", CourseId = 101 },
-            new Student { Id = 4, Name = "David", CourseId = 103 }
+            new Student { Id = 1, Name = "Alice", CourseId = 101, Grade= 9 },
+            new Student { Id = 2, Name = "Bob", CourseId = 102, Grade= 8 },
+            new Student { Id = 3, Name = "Charlie", CourseId = 101, Grade= 2 },
+            new Student { Id = 4, Name = "David", CourseId = 103, Grade= 4 }
         };
 
         List<Student> students1 = new List<Student>
         {
-            new Student { Id = 5, Name = "Emma", CourseId = 101 },
-            new Student { Id = 6, Name = "Tanmay", CourseId = 102 },
-            new Student { Id = 7, Name = "Ionel", CourseId = 101 },
-            new Student { Id = 4, Name = "David", CourseId = 103 }
+            new Student { Id = 5, Name = "Emma", CourseId = 101, Grade= 9 },
+            new Student { Id = 6, Name = "Tanmay", CourseId = 102, Grade= 7 },
+            new Student { Id = 7, Name = "Ionel", CourseId = 101, Grade= 10 },
+            new Student { Id = 4, Name = "David", CourseId = 103, Grade= 7 }
         };
 
         List<Course> courses = new List<Course>
@@ -28,8 +28,20 @@ public class Program
             new Course { Id = 102, Name = "Science" },
             new Course { Id = 103, Name = "History" }
         };
+        
+        var aggregate = students.Aggregate(new List<Student>(), (accumulator, currentStudent) =>
+        {
+            if(currentStudent.Grade >= 7)
+            {
+                accumulator.Add(currentStudent);
+            }
+            return accumulator;
+        });
 
-
+        foreach (var item in aggregate)
+        {
+            Console.WriteLine($"Student: {item.Name}, Course: {item.Grade}");
+        }
         // Join 
         var join = students.Join(
             courses,
@@ -85,6 +97,7 @@ public class Student
     public int Id { get; set; }
     public string Name { get; set; }
     public int CourseId { get; set; }
+    public int Grade { get; set; }
 }
 
 public class Course

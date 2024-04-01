@@ -26,9 +26,9 @@ namespace EmailNotificationApp
             int smtpPort = 587;
             string smtpUsername = "negaimarin@gmail.com";
             string smtpPassword = "ksnd bpao xdxj qqll";
-           
-            SmtpClient smtpClient = null;
 
+
+            SmtpClient smtpClient = null;
             SmtpClient client = null;
             MailMessage message = null;
             // ksnd bpao xdxj qqll
