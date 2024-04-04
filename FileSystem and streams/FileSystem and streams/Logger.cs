@@ -42,7 +42,7 @@ namespace FileSystem
                 Console.WriteLine($"Error writing to log file: {ex.Message}");
             }
         }
-
+        
         public async Task<string> ReadLogFileAsync()
         {
             try
