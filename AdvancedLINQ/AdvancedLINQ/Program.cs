@@ -6,6 +6,11 @@ public class Program
 {
     public static void Main(string[] args)
     {
+
+        string[] colors = { "green", "brown", "blue", "red" };
+        Console.WriteLine(colors.Where(c => c.Length >4).OrderBy;
+
+
         List<Student> students = new List<Student>
         {
             new Student { Id = 1, Name = "Alice", CourseId = 101, Grade= 9 },
@@ -28,7 +33,15 @@ public class Program
             new Course { Id = 102, Name = "Science" },
             new Course { Id = 103, Name = "History" }
         };
-        
+
+        List<int> numbers = new List<int> { 1, 2, 3, 4, 5, 6, 7, 8, 9, 10 };
+        var evenNumbers = numbers.Where(n => n%2 == 0) // Returns { 2, 4, 6, 8, 10 }
+
+
+        var squaredNumbers = numbers.Select(n => n * n);
+        var orderedNumbers = numbers.OrderBy(n => n);
+        var 
+
         var aggregate = students.Aggregate(new List<Student>(), (accumulator, currentStudent) =>
         {
             if(currentStudent.Grade >= 7)
