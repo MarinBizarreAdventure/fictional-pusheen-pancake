@@ -18,6 +18,21 @@ namespace BusinessLayer
         {
             Title = title;
             Description = description;
+            CheckApproval();
+        }
+        private void CheckApproval()
+        {
+            bool containsObsoleteTech = Title.ContainsObsoleteTechnology() || Description.ContainsObsoleteTechnology();
+            Approved = !containsObsoleteTech;
+        }
+    }
+
+    public static class StringExtensions
+    {
+        public static bool ContainsObsoleteTechnology(this string text)
+        {
+            var obsoleteTechnologies = new List<string> { "Cobol", "Punch Cards", "Commodore", "VBScript" };
+            return obsoleteTechnologies.Any(tech => text.Contains(tech));
         }
     }
 }
